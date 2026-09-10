@@ -1,0 +1,731 @@
+/* ==========================================================================
+   GRY KJ - Mega Developer Suite v4.0 Ultra (Main Stylesheet)
+   ========================================================================== */
+
+/* --- 1. المتغيرات والقيم الأساسية --- */
+:root {
+  --bg-primary: #0d0d14;
+  --bg-secondary: #13131f;
+  --bg-card: #1a1a2e;
+  --accent-purple: #a855f7;
+  --accent-cyan: #06b6d4;
+  --accent-pink: #ec4899;
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --border-color: rgba(168, 85, 247, 0.2);
+  --shadow-glow: 0 0 20px rgba(168, 85, 247, 0.25);
+  --font-main: 'Cairo', sans-serif;
+  --font-code: 'Fira Code', monospace;
+}
+
+/* التبديل بين الثيمات */
+body.theme-cyber {
+  --bg-primary: #050b14;
+  --bg-secondary: #0a1424;
+  --bg-card: #0f1f38;
+  --accent-purple: #00f0ff;
+  --accent-cyan: #7000ff;
+  --border-color: rgba(0, 240, 255, 0.3);
+}
+
+body.theme-matrix {
+  --bg-primary: #020d04;
+  --bg-secondary: #051a09;
+  --bg-card: #0a260f;
+  --accent-purple: #10b981;
+  --accent-cyan: #059669;
+  --border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* --- 2. التنسيقات العامة --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  direction: rtl;
+}
+
+#particlesCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple), var(--accent-cyan));
+  z-index: 9999;
+  width: 0%;
+}
+
+/* الشريط الإخباري العلوي */
+.top-marquee {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 6px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 25s linear infinite;
+  color: var(--accent-cyan);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* --- 3. الهيكل والصفحات --- */
+.page {
+  display: none;
+  padding: 30px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page.active {
+  display: block;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: var(--shadow-glow);
+  margin-bottom: 20px;
+}
+
+.page-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: var(--accent-purple);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-desc {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* --- 4. القائمة الجانبية (Sidebar) --- */
+.HM-btn {
+  position: fixed;
+  top: 40px;
+  right: 20px;
+  z-index: 1001;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.HM-btn span {
+  width: 20px;
+  height: 2px;
+  background: var(--text-main);
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 280px;
+  height: 100vh;
+  background: var(--bg-secondary);
+  border-left: 1px solid var(--border-color);
+  z-index: 1000;
+  padding: 20px;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.overlay-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: none;
+}
+
+.overlay-menu.active {
+  display: block;
+}
+
+.sidebar-profile {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.avatar-box {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 10px;
+}
+
+.profile-img, .gry-profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-purple);
+}
+
+.online-indicator {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  width: 12px;
+  height: 12px;
+  background: #10b981;
+  border-radius: 50%;
+  border: 2px solid var(--bg-secondary);
+}
+
+.sidebar-tools {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.tool-btn {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 6px;
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sidebar-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.2s;
+}
+
+.sidebar-link:hover, .sidebar-link.active {
+  background: var(--bg-card);
+  color: var(--accent-purple);
+}
+
+/* --- 5. الصفحة الرئيسية والتفاصيل --- */
+.gry-profile-top {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.gry-avatar-ring {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+}
+
+.gry-name {
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.gry-username {
+  color: var(--accent-cyan);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.gry-bio {
+  color: var(--text-muted);
+  font-size: 14px;
+  max-width: 500px;
+  margin: 0 auto 15px;
+}
+
+.gry-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.gry-btn-primary, .gry-btn-secondary {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-main);
+  transition: 0.2s;
+}
+
+.gry-btn-primary {
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink));
+  color: #fff;
+}
+
+.gry-btn-secondary {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.gry-btn-primary:hover, .gry-btn-secondary:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* الإحصائيات والتبويبات */
+.gry-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.stat-icon {
+  font-size: 24px;
+  color: var(--accent-purple);
+}
+
+.stat-num {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.gry-tabs {
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.gry-tab {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 10px 15px;
+  cursor: pointer;
+  font-family: var(--font-main);
+  font-weight: 600;
+}
+
+.gry-tab.active {
+  color: var(--accent-purple);
+  border-bottom: 2px solid var(--accent-purple);
+}
+
+.gry-tab-content {
+  display: none;
+}
+
+.gry-tab-content.active {
+  display: block;
+}
+
+.gry-account-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.gry-account-card {
+  background: var(--bg-card);
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.2s;
+}
+
+.gry-account-card:hover {
+  border-color: var(--accent-purple);
+}
+
+/* مهارات وجدول زمني */
+.skills-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.skill-bar {
+  height: 8px;
+  background: var(--bg-card);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+
+}
+
+.timeline {
+  border-right: 2px solid var(--border-color);
+  padding-right: 15px;
+}
+
+.timeline-item {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.timeline-date {
+  font-size: 12px;
+  color: var(--accent-cyan);
+}
+
+/* --- 6. شبكات الأدوات والاستوديو --- */
+.studio-grid, .prod-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.tool-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.tool-box.full-width {
+  grid-column: 1 / -1;
+}
+
+.tool-box h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-family: var(--font-main);
+  margin-bottom: 12px;
+}
+
+.code-input {
+  font-family: var(--font-code);
+  font-size: 12px;
+  height: 100px;
+  resize: vertical;
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.hash-output {
+  font-family: var(--font-code);
+  font-size: 11px;
+  word-break: break-all;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+}
+
+/* معرض المشاريع */
+.filter-tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tag-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.tag-btn.active {
+  background: var(--accent-purple);
+  color: #fff;
+}
+
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 15px;
+}
+
+.proj-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.proj-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.proj-badge {
+  font-size: 10px;
+  background: rgba(168, 85, 247, 0.2);
+  color: var(--accent-purple);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.proj-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.proj-footer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.like-btn, .code-link {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* --- 7. النوافذ والتنبيهات (Modals & Toast) --- */
+.ai-modal, .cmd-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(5px);
+  z-index: 2000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.ai-box, .cmd-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  max-width: 500px;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: var(--shadow-glow);
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.close-modal {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.chat-body {
+  height: 250px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.chat-msg {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  max-width: 80%;
+}
+
+.chat-msg.bot {
+  background: var(--bg-card);
+  align-self: flex-start;
+}
+
+.chat-msg.user {
+  background: var(--accent-purple);
+  color: #fff;
+  align-self: flex-end;
+}
+
+.quick-prompts {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.quick-prompts button {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* التنبيه Toast */
+.toast {
+  position: fixed;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-purple);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 13px;
+  transition: bottom 0.3s ease;
+  z-index: 3000;
+}
+
+.toast.show {
+  bottom: 30px;
+}
+
+.timer-display {
+  font-size: 32px;
+  font-family: var(--font-code);
+  text-align: center;
+  margin: 10px 0;
+  color: var(--accent-cyan);
+}
+
+.palette-display {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.todo-list {
+  list-style: none;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  background: var(--bg-primary);
+  border-radius: 6px;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tech-tag {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+}
