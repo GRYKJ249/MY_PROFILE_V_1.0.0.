@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0d0d14">
+  <title>GRY KJ - Mega Developer Suite v4.0 Ultra</title>
+  <link rel="icon" href="IMAGE/website.jpg" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark">
+
+  <!-- خلفية الجسيمات وشريط التقدم -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <canvas id="particlesCanvas"></canvas>
+
+  <!-- الشريط الإخباري العلوي -->
+  <div class="top-marquee">
+    <div class="marquee-content" id="marqueeText">
+      🚀 أهلاً بك في منصة GRY KJ Ultra | 💡 خبير الذكاء الاصطناعي والأتمتة | 🌐 عطبرة، السودان | ⚡ الحالة: متاح للعمل | 🎮 أكثر من 300 ميزة وأداة برمجية نشطة
+    </div>
+  </div>
+
+  <!-- زر القائمة الجانبية -->
+  <div class="HM-btn" onclick="toggleMenu()" title="القائمة الجانبية">
+    <span></span><span></span><span></span>
+    <span class="notif-dot"></span>
+  </div>
+
+  <!-- القائمة الجانبية المتقدمة -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-profile">
+      <div class="avatar-box">
+        <img src="IMAGE/profile.png" alt="GRY KJ" class="profile-img" onerror="this.src='https://via.placeholder.com/150/12121a/a855f7?text=GRY+KJ'">
+        <span class="online-indicator" title="متصل الآن"></span>
+      </div>
+      <h3>GRY KJ <i class="fas fa-check-circle verified-icon"></i></h3>
+      <p class="status"><i class="fab fa-discord"></i> Active Senior Developer</p>
+      <a href="PDF/cv.pdf" download class="cv-btn"><i class="fas fa-file-download"></i> تحميل السيرة الذاتية</a>
+    </div>
+
+    <!-- أدوات السايدبار السريعة -->
+    <div class="sidebar-tools">
+      <button class="tool-btn" onclick="cycleTheme()"><i class="fas fa-palette"></i> الثيم</button>
+      <button class="tool-btn" onclick="toggleCommandPalette()"><i class="fas fa-terminal"></i> الأوامر</button>
+      <button class="tool-btn" onclick="toggleSound()"><i class="fas fa-volume-up" id="soundIcon"></i> الصوت</button>
+    </div>
+
+    <!-- روابط التنقل الشاملة -->
+    <nav class="sidebar-nav">
+      <a href="javascript:void(0)" class="sidebar-link active" onclick="showPage('home', this)"><i class="fas fa-home"></i> الرئيسية</a>
+      <a href="javascript:void(0)" class="sidebar-link" onclick="showPage('projects', this)"><i class="fas fa-code"></i> معرض المشاريع</a>
+      <a href="javascript:void(0)" class="sidebar-link" onclick="showPage('studio', this)"><i class="fas fa-laptop-code"></i> استوديو التطوير</a>
+      <a href="javascript:void(0)" class="sidebar-link" onclick="showPage('ai-lab', this)"><i class="fas fa-microchip"></i> مختبر الذكاء الاصطناعي</a>
+      <a href="javascript:void(0)" class="sidebar-link" onclick="showPage('cyber-tools', this)"><i class="fas fa-user-shield"></i> أدوات الأمن السيبراني</a>
+      <a href="javascript:void(0)" class="sidebar-link" onclick="showPage('productivity', this)"><i class="fas fa-tasks"></i> أدوات الإنتاجية</a>
+      <a href="javascript:void(0)" class="sidebar-link" onclick="showPage('dev-analytics', this)"><i class="fas fa-chart-line"></i> التحليلات والمراقبة</a>
+      <a href="javascript:void(0)" class="sidebar-link" onclick="showPage('utilities', this)"><i class="fas fa-sliders-h"></i> الأدوات العامة</a>
+      <a href="javascript:void(0)" class="sidebar-link" onclick="openAiChat()"><i class="fas fa-robot"></i> المساعد الذكي</a>
+      <a href="javascript:void(0)" class="sidebar-link" onclick="showPage('about', this)"><i class="fas fa-user"></i> عن المطور</a>
+      <a href="javascript:void(0)" class="sidebar-link" onclick="showPage('contact', this)"><i class="fas fa-envelope"></i> اتصل بي</a>
+    </nav>
+  </aside>
+
+  <div class="overlay-menu" id="overlayMenu" onclick="toggleMenu()"></div>
+
+  <!-- 1. الصفحة الرئيسية -->
+  <main id="home" class="page active">
+    <div class="page-wrapper">
+      <div class="section-card">
+        <div class="gry-profile-top">
+          <div class="gry-avatar-ring">
+            <img src="IMAGE/profile.png" alt="GRY KJ" class="gry-profile-img" onerror="this.src='https://via.placeholder.com/150/12121a/a855f7?text=GRY+KJ'">
+          </div>
+          <h1 class="gry-name">GRY KJ</h1>
+          <p class="gry-username">@GRY_KJ</p>
+          <p class="gry-bio">Full Stack Dev | AI & Automation Specialist | Cyber Security Enthusiast</p>
+          <div class="gry-actions">
+            <button class="gry-btn-primary" onclick="gryOpenLink('https://wa.me/2490960830601')"><i class="fab fa-whatsapp"></i> توظيف / تواصل</button>
+            <button class="gry-btn-secondary" onclick="openAiChat()"><i class="fas fa-robot"></i> المحادثة الذكية</button>
+            <button class="gry-btn-secondary" onclick="quickShare()"><i class="fas fa-share-alt"></i> مشاركة</button>
+          </div>
+        </div>
+
+        <!-- الإحصائيات -->
+        <div class="gry-stats-grid">
+          <div class="stat-card">
+            <i class="fas fa-folder-open stat-icon"></i>
+            <div><span class="stat-num" id="statProjects">65+</span><p>مشروع منجز</p></div>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-star stat-icon"></i>
+            <div><span class="stat-num" id="statRating">4.9/5</span><p>التقييم العام</p></div>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-clock stat-icon"></i>
+            <div><span class="stat-num" id="statUptime">99.9%</span><p>استقرار الأنظمة</p></div>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-bolt stat-icon"></i>
+            <div><span class="stat-num">300+</span><p>ميزة برمجية</p></div>
+          </div>
+        </div>
+
+        <!-- التبويبات -->
+        <div class="gry-tabs">
+          <button class="gry-tab active" onclick="gryShowTab(event, 'gry-accounts-tab')">حسابات التواصل</button>
+          <button class="gry-tab" onclick="gryShowTab(event, 'gry-skills-tab')">المهارات والتقنيات</button>
+          <button class="gry-tab" onclick="gryShowTab(event, 'gry-experience-tab')">الخبرات البرمجية</button>
+        </div>
+
+        <div id="gry-accounts-tab" class="gry-tab-content active">
+          <div class="gry-account-grid">
+            <div class="gry-account-card" onclick="gryOpenLink('https://github.com/GRY-KJ')">
+              <div class="card-icon"><i class="fab fa-github"></i></div>
+              <div><h4>GitHub</h4><p>@GRY-KJ</p></div>
+            </div>
+            <div class="gry-account-card" onclick="gryOpenLink('https://t.me/GRY_KJ')">
+              <div class="card-icon"><i class="fab fa-telegram"></i></div>
+              <div><h4>Telegram</h4><p>@GRY_KJ</p></div>
+            </div>
+            <div class="gry-account-card" onclick="gryOpenLink('https://facebook.com')">
+              <div class="card-icon"><i class="fab fa-facebook"></i></div>
+              <div><h4>Facebook</h4><p>GRY KJ</p></div>
+            </div>
+            <div class="gry-account-card" onclick="copyToClipboard('GRY_KJ#0001', 'تم نسخ يوزر الديسكورد!')">
+              <div class="card-icon"><i class="fab fa-discord"></i></div>
+              <div><h4>Discord</h4><p>GRY_KJ#0001</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="gry-skills-tab" class="gry-tab-content">
+          <div class="skills-wrapper">
+            <div class="skill-item">
+              <div class="skill-info"><span>JavaScript / Node.js / TypeScript</span><span>95%</span></div>
+              <div class="skill-bar"><div class="skill-progress-bar" style="width: 95%;"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>Python & AI Automations</span><span>92%</span></div>
+              <div class="skill-bar"><div class="skill-progress-bar" style="width: 92%;"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>React & Full Stack Web Systems</span><span>88%</span></div>
+              <div class="skill-bar"><div class="skill-progress-bar" style="width: 88%;"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span>Cyber Security & API Penetration Testing</span><span>82%</span></div>
+              <div class="skill-bar"><div class="skill-progress-bar" style="width: 82%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="gry-experience-tab" class="gry-tab-content">
+          <div class="timeline">
+            <div class="timeline-item">
+              <h4>Senior Bot & AI Architect</h4>
+              <p class="timeline-date">2023 - الان</p>
+              <p>تطوير بوتات متعددة المنصات ذكية وربط أنظمة OpenAI وأطر الأتمتة المخصصة.</p>
+            </div>
+            <div class="timeline-item">
+              <h4>Full Stack Freelancer</h4>
+              <p class="timeline-date">2021 - 2023</p>
+              <p>بناء تطبيقات ويب مخصصة، واجهات برمجية APIs، وأنظمة إدارة للعملاء.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 2. قسم المشاريع -->
+  <section id="projects" class="page">
+    <div class="page-wrapper">
+      <div class="section-card">
+        <h2 class="page-title"><i class="fas fa-code"></i> معرض المشاريع البرمجية</h2>
+        <input type="text" id="projectSearch" placeholder="ابحث عن مشروع باسمه أو بالتقنية المستخدة..." onkeyup="searchProjects()" class="form-input">
+        
+        <div class="filter-tags">
+          <button class="tag-btn active" onclick="filterProjects('all', this)">الكل</button>
+          <button class="tag-btn" onclick="filterProjects('node', this)">Node.js</button>
+          <button class="tag-btn" onclick="filterProjects('react', this)">React</button>
+          <button class="tag-btn" onclick="filterProjects('python', this)">Python</button>
+          <button class="tag-btn" onclick="filterProjects('bot', this)">Bots</button>
+          <button class="tag-btn" onclick="filterProjects('ai', this)">AI</button>
+        </div>
+
+        <div class="projects-container">
+          <div class="proj-card" data-tech="node bot ai">
+            <div class="proj-header">
+              <h4>SONA AI Bot</h4>
+              <span class="proj-badge">نشط</span>
+            </div>
+            <p class="proj-desc">بوت فيسبوك آلي للرد الذكي وإدارة الاستفسارات بالذكاء الاصطناعي.</p>
+            <div class="proj-footer-actions">
+              <button class="like-btn" onclick="likeProject(this)"><i class="far fa-heart"></i> <span>142</span></button>
+              <button class="code-link" onclick="openProjectModal('SONA AI Bot', 'Node.js, Express, Facebook Graph API', 'نظام رد آلي متكامل لصفحات الفيسبوك مدعوم بمعالجة اللغات الطبيعية.')">التفاصيل</button>
+            </div>
+          </div>
+
+          <div class="proj-card" data-tech="react">
+            <div class="proj-header">
+              <h4>Quantum Chat UI</h4>
+              <span class="proj-badge">نشط</span>
+            </div>
+            <p class="proj-desc">واجهة محادثة تفاعلية سريعة تعتمد على تقنية WebSockets والـ REST APIs.</p>
+            <div class="proj-footer-actions">
+              <button class="like-btn" onclick="likeProject(this)"><i class="far fa-heart"></i> <span>89</span></button>
+              <button class="code-link" onclick="openProjectModal('Quantum Chat UI', 'React, CSS3, WebSockets', 'واجهة شات متطورة تدعم التنسيق المتقدم وأكواد البرمجة بشكل فوري.')">التفاصيل</button>
+            </div>
+          </div>
+
+          <div class="proj-card" data-tech="python bot">
+            <div class="proj-header">
+              <h4>AutoScraper Pro</h4>
+              <span class="proj-badge">جديد</span>
+            </div>
+            <p class="proj-desc">مجمع بيانات غير متزامن فائق السرعة لتحليل واستخراج البيانات تلقائياً.</p>
+            <div class="proj-footer-actions">
+              <button class="like-btn" onclick="likeProject(this)"><i class="far fa-heart"></i> <span>205</span></button>
+              <button class="code-link" onclick="openProjectModal('AutoScraper Pro', 'Python, BeautifulSoup, Asyncio', 'محرك سحب بيانات ذكي قادر على التعامل مع حمايات الحظر التلقائية.')">التفاصيل</button>
+            </div>
+          </div>
+
+          <div class="proj-card" data-tech="node react">
+            <div class="proj-header">
+              <h4>TaskFlow SaaS</h4>
+              <span class="proj-badge">شائع</span>
+            </div>
+            <p class="proj-desc">لوحة تحكم وتتبع مهام الفريق بأسلوب Kanban وتصميم عصري.</p>
+            <div class="proj-footer-actions">
+              <button class="like-btn" onclick="likeProject(this)"><i class="far fa-heart"></i> <span>310</span></button>
+              <button class="code-link" onclick="openProjectModal('TaskFlow SaaS', 'React, Node, MongoDB', 'منصة إدارة مشاريع تفاعلية مع تنبيهات فورية وتتبع تقدم العمل.')">التفاصيل</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. قسم استوديو التطوير -->
+  <section id="studio" class="page">
+    <div class="page-wrapper">
+      <div class="section-card">
+        <h2 class="page-title"><i class="fas fa-laptop-code"></i> استوديو التطوير المباشر</h2>
+        <p class="section-desc">أدوات البرمجة المباشرة لتنسيق واختبار وتحويل النصوص والرموز.</p>
+        
+        <div class="studio-grid">
+          <div class="tool-box">
+            <h3><i class="fas fa-brackets-curly"></i> تنسيق وفحص JSON</h3>
+            <textarea id="formatterInput" placeholder="أدخل نص JSON هنا..." class="form-input code-input"></textarea>
+            <div class="btn-group">
+              <button class="gry-btn-primary" onclick="formatJson()"><i class="fas fa-magic"></i> تنسيق</button>
+              <button class="gry-btn-secondary" onclick="minifyJson()"><i class="fas fa-compress"></i> ضغط</button>
+            </div>
+          </div>
+
+          <div class="tool-box">
+            <h3><i class="fas fa-code"></i> مشفر ومفكك Base64</h3>
+            <textarea id="base64Input" placeholder="أدخل نصاً أو شفرة Base64..." class="form-input code-input"></textarea>
+            <div class="btn-group">
+              <button class="gry-btn-primary" onclick="encodeBase64()"><i class="fas fa-lock"></i> تشفير</button>
+              <button class="gry-btn-secondary" onclick="decodeBase64()"><i class="fas fa-lock-open"></i> فك التشفير</button>
+            </div>
+          </div>
+
+          <div class="tool-box">
+            <h3><i class="fas fa-key"></i> مولد التشفير والتوقيع Hash</h3>
+            <input type="text" id="hashInput" placeholder="النص المراد تشفيره..." class="form-input">
+            <p class="hash-output">MD5: <span id="hashMD5">-</span></p>
+            <p class="hash-output">SHA256: <span id="hashSHA256">-</span></p>
+            <button class="gry-btn-primary" onclick="generateHashes()"><i class="fas fa-fingerprint"></i> توليد الهاش</button>
+          </div>
+
+          <div class="tool-box">
+            <h3><i class="fas fa-shield-alt"></i> مولد كلمة المرور الآمنة</h3>
+            <div class="range-group">
+              <label>الطول: <span id="passLenVal">16</span></label>
+              <input type="range" id="passLen" min="8" max="32" value="16" oninput="document.getElementById('passLenVal').innerText = this.value">
+            </div>
+            <input type="text" id="passOutput" readonly class="form-input">
+            <button class="gry-btn-primary" onclick="generatePassword()"><i class="fas fa-key"></i> إنتاج كلمة مرور</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. قسم مختبر الذكاء الاصطناعي (صفحة جديدة) -->
+  <section id="ai-lab" class="page">
+    <div class="page-wrapper">
+      <div class="section-card">
+        <h2 class="page-title"><i class="fas fa-microchip"></i> مختبر الذكاء الاصطناعي والأتمتة</h2>
+        <p class="section-desc">أدوات فورية لمعالجة النصوص توليد الموجهات وتحليل الأكواد ذكائياً.</p>
+        
+        <div class="studio-grid">
+          <div class="tool-box">
+            <h3><i class="fas fa-pen-nib"></i> مولد برومبتات AI Prompt Generator</h3>
+            <input type="text" id="promptTopic" placeholder="الموضوع (مثال: تصميم تطبيق...)" class="form-input">
+            <select id="promptRole" class="form-input">
+              <option value="developer">مطور برمجيات خبير</option>
+              <option value="designer">مصمم واجهات UI/UX</option>
+              <option value="copywriter">كاتب محتوى تسويقي</option>
+            </select>
+            <textarea id="promptOutput" readonly class="form-input code-input" placeholder="البرومبت المولد سيظهر هنا..."></textarea>
+            <button class="gry-btn-primary" onclick="generateAiPrompt()"><i class="fas fa-wand-magic-sparkles"></i> توليد البرومبت</button>
+          </div>
+
+          <div class="tool-box">
+            <h3><i class="fas fa-bug"></i> فاحص ثغرات ومحسن الكود Regex & Lint</h3>
+            <textarea id="codeAnalyzeInput" placeholder="أدخل كود JavaScript أو Python هنا..." class="form-input code-input"></textarea>
+            <div id="codeAnalyzeResult" style="font-size: 11px; color: var(--accent-cyan); margin-bottom: 8px;">جاهز للفحص...</div>
+            <button class="gry-btn-primary" onclick="analyzeCodeSnippet()"><i class="fas fa-search"></i> تحليل الكود</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. قسم أدوات الأمن السيبراني (صفحة جديدة) -->
+  <section id="cyber-tools" class="page">
+    <div class="page-wrapper">
+      <div class="section-card">
+        <h2 class="page-title"><i class="fas fa-user-shield"></i> أدوات الأمن والشبكات</h2>
+        <p class="section-desc">فحص النصوص وتحليل المنافذ والتشفير المتقدم.</p>
+
+        <div class="studio-grid">
+          <div class="tool-box">
+            <h3><i class="fas fa-network-wired"></i> محاكي فحص المنافذ Port Scanner</h3>
+            <input type="text" id="targetIp" placeholder="مثال: 192.168.1.1 أو example.com" class="form-input">
+            <button class="gry-btn-primary" onclick="simulatePortScan()"><i class="fas fa-radar"></i> بدء الفحص</button>
+            <div id="scanResult" class="hash-output" style="margin-top:10px;"></div>
+          </div>
+
+          <div class="tool-box">
+            <h3><i class="fas fa-lock"></i> مشفر Caesar Cipher</h3>
+            <input type="text" id="caesarInput" placeholder="النص المطلوب..." class="form-input">
+            <input type="number" id="caesarShift" value="3" placeholder="مقدار الإزاحة" class="form-input">
+            <div class="btn-group">
+              <button class="gry-btn-primary" onclick="runCaesar(true)">تشفير</button>
+              <button class="gry-btn-secondary" onclick="runCaesar(false)">فك التشفير</button>
+            </div>
+            <input type="text" id="caesarOutput" readonly class="form-input" style="margin-top:8px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. قسم الإنتاجية -->
+  <section id="productivity" class="page">
+    <div class="page-wrapper">
+      <div class="section-card">
+        <h2 class="page-title"><i class="fas fa-tasks"></i> حزمة أدوات الإنتاجية</h2>
+        
+        <div class="prod-grid">
+          <div class="tool-box">
+            <h3><i class="fas fa-calculator"></i> حاسبة تكلفة المشروع</h3>
+            <select id="calcType" onchange="calculateEstimate()" class="form-input">
+              <option value="150">صفحة هبوط / معرض أعمال ($150)</option>
+              <option value="350">تطبيق ويب متكامل Full Stack ($350)</option>
+              <option value="250">بوت أتمتة (تيليجرام/فيسبوك) ($250)</option>
+              <option value="500">نظام ذكاء اصطناعي مخصص ($500)</option>
+            </select>
+            <div class="checkbox-group">
+              <label><input type="checkbox" id="extSpeed" onchange="calculateEstimate()"> تسليم سريع (+ $50)</label>
+              <label><input type="checkbox" id="extSupport" onchange="calculateEstimate()"> دعم لمدة 3 أشهر (+ $100)</label>
+            </div>
+            <p class="estimate-result">التكلفة التقديرية: <strong id="calcPrice">$150</strong></p>
+          </div>
+
+          <div class="tool-box">
+            <h3><i class="fas fa-clock"></i> مؤقت بومودورو للتركيز</h3>
+            <div class="timer-display" id="timerDisplay">25:00</div>
+            <div class="btn-group">
+              <button class="gry-btn-primary" onclick="startTimer()"><i class="fas fa-play"></i> بدء</button>
+              <button class="gry-btn-secondary" onclick="pauseTimer()"><i class="fas fa-pause"></i> إيقاف</button>
+              <button class="gry-btn-secondary" onclick="resetTimer()"><i class="fas fa-undo"></i> إعادة</button>
+            </div>
+          </div>
+
+          <div class="tool-box full-width">
+            <h3><i class="fas fa-check-double"></i> مدير المهام السريع</h3>
+            <div class="todo-input-group">
+              <input type="text" id="todoInput" placeholder="أضف مهمة جديدة..." class="form-input">
+              <button class="gry-btn-primary" onclick="addTodo()"><i class="fas fa-plus"></i> إضافة</button>
+            </div>
+            <ul class="todo-list" id="todoList"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. قسم التحليلات والمراقبة (صفحة جديدة) -->
+  <section id="dev-analytics" class="page">
+    <div class="page-wrapper">
+      <div class="section-card">
+        <h2 class="page-title"><i class="fas fa-chart-line"></i> لوحة تحليلات النظام و الأداء</h2>
+        <p class="section-desc">مراقبة حية لاستهلاك الموارد واستجابة المتصفح.</p>
+
+        <div class="studio-grid">
+          <div class="tool-box">
+            <h3><i class="fas fa-memory"></i> مراقب الذاكرة الافتراضي</h3>
+            <div style="font-size: 12px; margin-bottom: 8px;">استهلاك الذاكرة التقريبي: <strong id="memUsage" style="color:var(--accent-pink)">-- MB</strong></div>
+            <div class="skill-bar"><div id="memBar" class="skill-progress-bar" style="width: 40%;"></div></div>
+          </div>
+
+          <div class="tool-box">
+            <h3><i class="fas fa-tachometer-alt"></i> زمن استجابة الـ DOM</h3>
+            <div style="font-size: 12px; margin-bottom: 8px;">سرعة التحميل الحالية: <strong id="loadTimeVal" style="color:var(--accent-cyan)">-- ms</strong></div>
+            <button class="gry-btn-primary" onclick="measurePerformance()"><i class="fas fa-sync"></i> إعادة القياس</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. قسم الأدوات العامة -->
+  <section id="utilities" class="page">
+    <div class="page-wrapper">
+      <div class="section-card">
+        <h2 class="page-title"><i class="fas fa-sliders-h"></i> الأدوات العامة للنظام</h2>
+        
+        <div class="studio-grid">
+          <div class="tool-box">
+            <h3><i class="fas fa-palette"></i> مولد لوحة ألوان CSS</h3>
+            <div class="palette-display" id="colorPalette"></div>
+            <button class="gry-btn-primary" onclick="generatePalette()"><i class="fas fa-sync"></i> لوحة ألوان جديدة</button>
+          </div>
+
+          <div class="tool-box">
+            <h3><i class="fas fa-font"></i> عداد الكلمات والحروف</h3>
+            <textarea id="textStatsInput" placeholder="اكتب أو الصق النص هنا..." class="form-input" oninput="updateTextStats()"></textarea>
+            <div class="text-stats">
+              <span>الكلمات: <strong id="statWords">0</strong></span>
+              <span>الحروف: <strong id="statChars">0</strong></span>
+              <span>وقت القراءة: <strong id="statTime">0s</strong></span>
+            </div>
+          </div>
+
+          <div class="tool-box">
+            <h3><i class="fas fa-link"></i> مشفر ومفكك الروابط URL</h3>
+            <input type="text" id="urlInput" placeholder="https://example.com?query=test" class="form-input">
+            <div class="btn-group">
+              <button class="gry-btn-primary" onclick="encodeUrl()"><i class="fas fa-link"></i> تشفير</button>
+              <button class="gry-btn-secondary" onclick="decodeUrl()"><i class="fas fa-unlink"></i> فك</button>
+            </div>
+          </div>
+
+          <div class="tool-box">
+            <h3><i class="fas fa-qrcode"></i> صانع باركود QR السريع</h3>
+            <input type="text" id="qrInput" placeholder="أدخل الرابط أو النص..." class="form-input">
+            <button class="gry-btn-primary" onclick="generateQR()"><i class="fas fa-qrcode"></i> إنتاج الباركود</button>
+            <div id="qrResult" class="qr-container"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. قسم عن المطور -->
+  <section id="about" class="page">
+    <div class="page-wrapper">
+      <div class="section-card">
+        <h2 class="page-title"><i class="fas fa-user"></i> نبذة عن المطور GRY KJ</h2>
+        <p class="about-text">
+          مرحباً بك! أنا <strong>GRY KJ</strong>، مطور Full Stack وخبير في الذكاء الاصطناعي والأتمتة ومقيم في عطبرة، السودان. أركز على تحويل الأفكار والأنظمة المعقدة إلى حلول برمجية سلسة وسريعة.
+        </p>
+        <p class="about-text">
+          سواء كان الهدف هو بناء واجهات برمجة تطبيقات (APIs)، بوتات تفاعلية لتيليجرام وفيسبوك، أو تطوير تطبيقات ويب متكاملة، يظل اهتمامي الرئيسي متمركزاً حول الأكواد النظيفة والأداء الفائق.
+        </p>
+
+        <h3 class="sub-title"><i class="fas fa-layer-group"></i> التقنيات والمجموعات البرمجية</h3>
+        <div class="tech-tags">
+          <span class="tech-tag"><i class="fab fa-js"></i> JavaScript ES6+</span>
+          <span class="tech-tag"><i class="fab fa-node-js"></i> Node.js</span>
+          <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
+          <span class="tech-tag"><i class="fab fa-react"></i> React.js</span>
+          <span class="tech-tag"><i class="fas fa-database"></i> MongoDB / SQL</span>
+          <span class="tech-tag"><i class="fab fa-docker"></i> Docker & Cloud</span>
+          <span class="tech-tag"><i class="fas fa-robot"></i> AI / OpenAI APIs</span>
+          <span class="tech-tag"><i class="fab fa-git-alt"></i> Git DevOps</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. قسم التواصل -->
+  <section id="contact" class="page">
+    <div class="page-wrapper">
+      <div class="section-card">
+        <h2 class="page-title"><i class="fas fa-envelope"></i> اتصل بي</h2>
+        <p class="section-desc">هل لديك فكرة مشروع أو ترغب في الاستفسار؟ أرسل لي رسالة مباشرة!</p>
+        <form onsubmit="handleFormSubmit(event)" class="contact-form">
+          <div class="form-row">
+            <input type="text" placeholder="اسمك" required class="form-input">
+            <input type="email" placeholder="البريد الإلكتروني" required class="form-input">
+          </div>
+          <input type="text" placeholder="عنوان الرسالة" required class="form-input">
+          <textarea placeholder="تفاصيل الرسالة..." rows="5" required class="form-input"></textarea>
+          <button type="submit" class="gry-btn-primary"><i class="fas fa-paper-plane"></i> إرسال الرسالة</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- النوافذ المنبثقة Modals -->
+  <div class="ai-modal" id="aiModal">
+    <div class="ai-box">
+      <div class="chat-header">
+        <span><i class="fas fa-robot"></i> مساعد GRY الذكي v4.0</span>
+        <span onclick="closeAiChat()" class="close-modal">&times;</span>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="chat-msg bot">مرحباً! أنا المساعد الذكي الخاص بـ GRY KJ. اسألني عن الخبرات، الأسعار، أو تفاصيل المشاريع!</div>
+      </div>
+      <div class="quick-prompts">
+        <button onclick="sendQuickPrompt('ما هي مهارات GRY؟')">المهارات</button>
+        <button onclick="sendQuickPrompt('كيف يمكنني التوظيف؟')">التوظيف</button>
+        <button onclick="sendQuickPrompt('عرض الأعمال')">المشاريع</button>
+      </div>
+      <input type="text" id="chatInput" placeholder="اكتب رسالتك واضغط Enter..." onkeypress="handleChat(event)" class="form-input">
+    </div>
+  </div>
+
+  <div class="cmd-modal" id="cmdModal">
+    <div class="cmd-box">
+      <div class="chat-header">
+        <span><i class="fas fa-terminal"></i> لوحة الأوامر السريعة</span>
+        <span onclick="toggleCommandPalette()" class="close-modal">&times;</span>
+      </div>
+      <input type="text" id="cmdInput" placeholder="اكتب اسم الصفحة (home, projects, studio, ai-lab, cyber-tools, productivity, dev-analytics, utilities)..." onkeyup="handleCMD(event)" class="form-input">
+      <div class="cmd-hints">
+        <p>التنقل السريع: <span>home</span>, <span>projects</span>, <span>studio</span>, <span>ai-lab</span>, <span>cyber-tools</span>, <span>productivity</span>, <span>dev-analytics</span>, <span>utilities</span>, <span>about</span>, <span>contact</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cmd-modal" id="projectModal">
+    <div class="cmd-box">
+      <div class="chat-header">
+        <span id="projModalTitle">تفاصيل المشروع</span>
+        <span onclick="closeProjectModal()" class="close-modal">&times;</span>
+      </div>
+      <p style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">التقنيات: <strong id="projModalTech" style="color:var(--accent-purple)">-</strong></p>
+      <p id="projModalDesc" style="font-size:13px; line-height:1.5; margin-bottom:15px;">-</p>
+      <button class="gry-btn-primary" onclick="closeProjectModal()">إغلاق</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">تمت العملية بنجاح!</div>
+
+  <script src="script/main.js"></script>
+</body>
+</html>
