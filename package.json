@@ -1,0 +1,50 @@
+{
+  "name": "gry-kj-mega-suite",
+  "version": "1.0.0",
+  "description": "GRY KJ - Mega Developer Suite | 300+ tools, AI labs, security utilities, full-stack portfolio",
+  "main": "index.js",
+  "homepage": "https://my-profile-v-1-0-0.vercel.app",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "cross-env NODE_ENV=development webpack serve --mode development",
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src --ext .js,.ts,.tsx",
+    "lint:fix": "eslint src --ext .js,.ts,.tsx --fix",
+    "format": "prettier --write 'src/**/*.{js,ts,tsx,json,css,md}'",
+    "deploy": "npm run build && vercel",
+    "setup": "bash scripts/setup.sh"
+  },
+  "keywords": [
+    "developer-tools",
+    "portfolio",
+    "ai-automation",
+    "cybersecurity",
+    "full-stack"
+  ],
+  "author": "GRY KJ",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/node": "^20.0.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.0",
+    "webpack-dev-server": "^4.15.1",
+    "typescript": "^5.2.0",
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.0",
+    "jest": "^29.7.0",
+    "cross-env": "^7.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
